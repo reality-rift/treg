@@ -191,9 +191,9 @@ async def test_an_account_out_of_capacity_is_skipped_and_kept_out(clients: Async
 def test_a_malformed_accounts_value_never_echoes_a_credential():
     from pydantic import ValidationError
     with pytest.raises(ValidationError) as bad:
-        _settings(platform_accounts='{"tikhub": {"B": {"platform_key_tikhub": "SECRET-TAIL-123"}}}')
-    assert "SECRET-TAIL-123" not in str(bad.value)
-    assert "SECRET-TAIL-123" not in repr(_settings(
+        _settings(platform_accounts='{"tikhub": {"B": {"platform_key_tikhub": "sk_test_123"}}}')
+    assert "sk_test_123" not in str(bad.value)
+    assert "sk_test_123" not in repr(_settings(
         platform_key_tikhub="P", platform_accounts=json.dumps(ACCOUNTS)).platform_slots("tikhub"))
 
 
